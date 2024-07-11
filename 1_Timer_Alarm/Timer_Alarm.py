@@ -59,3 +59,5 @@ def play_alarm(sound_file):
 
 if __name__ == "__main__":
     main()
+
+# Find a way to play random soothing sounds from online streaming services like YouTube/Spotify.
