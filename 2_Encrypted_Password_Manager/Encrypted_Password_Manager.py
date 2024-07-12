@@ -23,12 +23,16 @@ def view():
         with open("passwords.txt", 'r') as f:
             for line in f.readlines():
                 data = line.rstrip()
-                user, pswd = data.split(" ")
-                print(f"\nAccount Name: {user} || Password: {pswd}")
+                saved_on, user, enc_pswd = data.split(" ")
+                print(f"\nSaved On: {saved_on} || Account Name: {user} || Password: {dec_pswd}")
     except FileNotFoundError:
         print("No file has been created to store the info yet.")
 
 def add():
+    # Get current date and time
+    current_datetime = datetime.datetime.now()
+    date_added = current_datetime.strftime("%Y-%m-%d_@_%I:%M_%p")
+    
     name = input("Account Name: ")
     while True:
         gen_pass=input("Do you want to Generate a random password? (y/n): ")
@@ -46,7 +50,7 @@ def add():
         pwd = input("Password: ")
 
     with open("passwords.txt", 'a') as f:
-        f.write(name + " " + pwd + "\n")
+        f.write(date_added + " " + name + " " + encrypted_pwd + "\n")
     print("DONE!")
 
 def generate():
