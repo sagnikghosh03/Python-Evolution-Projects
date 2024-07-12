@@ -19,17 +19,28 @@ def main():
             continue
 
 def view():
-    with open("passwords.txt", 'r') as f:
-        for line in f.readlines():
-            data = line.rstrip()
-            user, pswd = data.split(" ")
-            print(f"\nAccount Name: {user}, Password: {pswd}")
+    try:
+        with open("passwords.txt", 'r') as f:
+            for line in f.readlines():
+                data = line.rstrip()
+                user, pswd = data.split(" ")
+                print(f"\nAccount Name: {user} || Password: {pswd}")
+    except FileNotFoundError:
+        print("No file has been created to store the info yet.")
 
 def add():
     name = input("Account Name: ")
-    gen_pass=input("Do you want to generate a random password? (y/n): ") == 'y'
+    while True:
+        gen_pass=input("Do you want to Generate a random password? (y/n): ")
+        choices=["y","n"]
 
-    if gen_pass:
+        if gen_pass not in choices:
+            print("Invalid choice. Choose one from (y / n)\n")
+            continue
+        else:
+            break      
+
+    if gen_pass == "y":
         pwd = generate()
     else:
         pwd = input("Password: ")
