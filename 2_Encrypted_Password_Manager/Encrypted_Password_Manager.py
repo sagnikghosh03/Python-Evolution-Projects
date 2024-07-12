@@ -27,33 +27,33 @@ def view():
 
 def add():
     name = input("Account Name: ")
-    # gen_pass=input("Do you want to generate a random password? (y/n): ") == 'y'
+    gen_pass=input("Do you want to generate a random password? (y/n): ") == 'y'
 
-    # if gen_pass:
-    #     pwd = generate()
-    # else:
-    #     pwd = input("Password: ")
+    if gen_pass:
+        pwd = generate()
+    else:
+        pwd = input("Password: ")
 
     with open("passwords.txt", 'a') as f:
         f.write(name + " " + pwd + "\n")
     print("DONE!")
 
-# def generate():
-#     while True:
-#         try:
-#             length=int(input("\nWhat should be the length of the Password? "))
-#             break
-#         except Exception as e:
-#             print("Error:", e)
-#     while True:
-#         has_num=input("Do you want to include Numbers (y/n)? ").strip().lower()
-#         has_special=input("Do you want to include Special Characters (y/n)? ").strip().lower()
-#         choices=["y","n"]
+def generate():
+    while True:
+        try:
+            length=int(input("\nWhat should be the length of the Password? "))
+            break
+        except Exception as e:
+            print("Error:", e)
+    while True:
+        has_num=input("Do you want to include Numbers (y/n)? ").strip().lower()
+        has_special=input("Do you want to include Special Characters (y/n)? ").strip().lower()
+        choices=["y","n"]
 
-#         if has_num not in choices and has_special not in choices:
-#             print("Invalid choice. Choose one from (y / n)\n")
-#         else:
-#             break
+        if has_num not in choices and has_special not in choices:
+            print("Invalid choice. Choose one from (y / n)\n")
+        else:
+            break
 
     letters=string.ascii_letters
     num=string.digits
