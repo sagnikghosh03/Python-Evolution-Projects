@@ -10,11 +10,14 @@ def main():
 
     key = load_key()
     fernet = Fernet(key)
-    master_pwd = input("\nEnter the Master Password: ")
+    while True:
+        master_pwd = input("\nEnter the Master Password: ")
 
-    if not verify_master_password(fernet, master_pwd):
-        print("Incorrect Master Password. Exiting...")
-        return
+        if not verify_master_password(fernet, master_pwd):
+            print("Incorrect Master Password!!!")
+            continue
+        else:
+            break
 
     while True:
         mode = input("\nWould you like to Add password or View existing passwords? Press 'q' to Quit. (add / view / q): ")
@@ -51,6 +54,7 @@ def verify_master_password(fernet, master_pwd):
 def view(fernet):
     try:
         with open("passwords.txt", 'r') as f:
+            print("-"*33)
             for line in f.readlines():
                 data = line.rstrip()
                 saved_on, user, enc_pswd = data.split(" ")
@@ -59,6 +63,7 @@ def view(fernet):
                     print(f"\nSaved On: {saved_on} || Account Name: {user} || Password: {dec_pswd}")
                 except Exception as e:
                     print(f"Error: {e}")
+            print("\n","-"*33, sep="", end="")
     except FileNotFoundError:
         print("No file has been created to store the info yet.")
 
@@ -68,7 +73,7 @@ def add(fernet):
     date_added = current_datetime.strftime("%Y-%m-%d_@_%I:%M_%p")
 
     # Get the info
-    name = input("Account Name: ")
+    name = input("Account Name: ",)
     while True:
         gen_pass = input("Do you want to Generate a random password? (y/n): ")
         choices = ["y", "n"]
@@ -111,7 +116,6 @@ def generate():
     letters = string.ascii_letters
     num = string.digits
     special = string.punctuation
-
     characters = letters
 
     if has_num == "y":
