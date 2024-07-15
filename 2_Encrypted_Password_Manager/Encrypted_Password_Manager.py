@@ -1,10 +1,16 @@
 from cryptography.fernet import Fernet
+from rich.console import Console
 import datetime
 import random
 import string
 import os
 
+# Create a Console instance
+console = Console()
+
 def main():
+    # Clear the console
+    console.clear()
     if not os.path.exists("key.key"):
         generate_master_password()
 
@@ -14,22 +20,22 @@ def main():
         master_pwd = input("\nEnter the Master Password: ")
 
         if not verify_master_password(fernet, master_pwd):
-            print("Incorrect Master Password!!!")
+            console.print("[red]Incorrect Master Password!!![/red]")
             continue
         else:
             break
-
+    console.clear()
+    console.print("\nChoose what you would like to do:\n\n\t[1] Add password. \n\t[2] View existing passwords. \n\t[3] Quit the program. ")
     while True:
-        mode = input("\nWould you like to Add password or View existing passwords? Press 'q' to Quit. (add / view / q): ")
-        
-        if mode == 'q':
+        mode = input("\nWhat would you like to do? (1 / 2 / 3): ")
+        if mode == '3':
             break
-        if mode == 'view':
+        if mode == '2':
             view(fernet)
-        elif mode == 'add':
+        elif mode == '1':
             add(fernet)
         else:
-            print("Invalid mode. Choose one from (add / view / q)")
+            console.print("[red]Invalid mode choice![/red] Choose one from (1 / 2 / 3)")
             continue
 
 def generate_master_password():
@@ -75,11 +81,11 @@ def add(fernet):
     # Get the info
     name = input("Account Name: ",)
     while True:
-        gen_pass = input("Do you want to Generate a random password? (y/n): ")
+        gen_pass = input("\nDo you want to Generate a random password? (y/n): ")
         choices = ["y", "n"]
 
         if gen_pass not in choices:
-            print("Invalid choice. Choose one from (y / n)\n")
+            console.print("[red]Invalid choice![/red] Choose one from (y / n)")
             continue
         else:
             break      
@@ -101,7 +107,7 @@ def generate():
             length = int(input("\nWhat should be the length of the Password? "))
             break
         except Exception as e:
-            print("Error:", e)
+            console.print("[red]Error:[/red]", e)
     
     while True:
         has_num = input("Do you want to include Numbers (y/n)? ").strip().lower()
@@ -109,7 +115,7 @@ def generate():
         choices = ["y", "n"]
 
         if has_num not in choices or has_special not in choices:
-            print("Invalid choice. Choose one from (y / n)\n")
+            console.print("[red]Invalid choice![/red] Choose one from (y / n)\n")
         else:
             break
 
