@@ -68,7 +68,7 @@ def view(fernet):
                     dec_pswd = fernet.decrypt(enc_pswd.encode()).decode()
                     console.print(f"\n[orange_red1]Saved On:[/orange_red1] ", end="")
                     print(f"{saved_on} ", end="")
-                    console.print(f"[bold]||[/bold] [green]Account Name:[/green] {user} [bold]||[/bold] [bright_blue]Password:[/bright_blue] ", end="")
+                    console.print(f"[bold]||[/bold] [green]Account / Name:[/green] {user} [bold]||[/bold] [bright_blue]Password:[/bright_blue] ", end="")
                     print(f"{dec_pswd}")
                 except Exception as e:
                     print(f"Error: {e}")
@@ -82,7 +82,7 @@ def add(fernet):
     date_added = current_datetime.strftime("%Y-%m-%d_@_%I:%M_%p")
 
     # Get the info
-    name = input("Account Name: ",)
+    name = input("Account / Name: ",)
     while True:
         gen_pass = input("\nDo you want to Generate a Random Password? (y/n): ")
         choices = ["y", "n"]
@@ -91,7 +91,7 @@ def add(fernet):
             console.print("[red]Invalid choice![/red] Choose one from (y / n)")
             continue
         else:
-            break      
+            break
 
     if gen_pass == "y":
         pwd = generate()
@@ -104,24 +104,27 @@ def add(fernet):
         f.write(date_added + " " + name + " " + encrypted_pwd + "\n")
     print("\nDONE!")
 
-def generate():
-    while True:
-        try:
-            length = int(input("\nWhat should be the length of the Password? "))
-            break
-        except Exception as e:
-            console.print("[red]Error:[/red]", e)
-    
-    while True:
-        has_num = input("\nDo you want to include Numbers (y/n)? ").strip().lower()
-        if check(has_num):
-            break
+def generate(length=None, has_num=None, has_special=None):
+    if length is None:
+        while True:
+            try:
+                length = int(input("\nWhat should be the length of the Password? "))
+                break
+            except Exception as e:
+                console.print("[red]Error:[/red]", e)
 
-    while True:
-        has_special = input("\nDo you want to include Special Characters (y/n)? ").strip().lower()
-        if check(has_special):
-            break
-    
+    if has_num is None:
+        while True:
+            has_num = input("\nDo you want to include Numbers (y/n)? ").strip().lower()
+            if check(has_num):
+                break
+
+    if has_special is None:
+        while True:
+            has_special = input("\nDo you want to include Special Characters (y/n)? ").strip().lower()
+            if check(has_special):
+                break
+
     letters = string.ascii_letters
     num = string.digits
     special = string.punctuation
