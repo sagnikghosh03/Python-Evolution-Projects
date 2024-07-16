@@ -1,4 +1,4 @@
-# Password Manager Project
+# Ecrypted Password Manager Project
 
 #### Video Demo: [Insert YouTube URL Here]
 
