@@ -1,5 +1,6 @@
 from cryptography.fernet import Fernet
 from rich.console import Console
+from rich.table import Table
 import datetime
 import random
 import string
@@ -60,21 +61,24 @@ def verify_master_password(fernet, master_pwd):
 def view(fernet):
     try:
         with open("passwords.txt", 'r') as f:
-            print("-"*33)
+            table = Table(title="Password Manager")
+            table.add_column("Saved On", style="orange_red1")
+            table.add_column("Account / Name", style="green")
+            table.add_column("Password", style="bright_blue")
+
             for line in f.readlines():
                 data = line.rstrip()
                 saved_on, user, enc_pswd = data.split(" ")
                 try:
                     dec_pswd = fernet.decrypt(enc_pswd.encode()).decode()
-                    console.print(f"\n[orange_red1]Saved On:[/orange_red1] ", end="")
-                    print(f"{saved_on} ", end="")
-                    console.print(f"[bold]||[/bold] [green]Account / Name:[/green] {user} [bold]||[/bold] [bright_blue]Password:[/bright_blue] ", end="")
-                    print(f"{dec_pswd}")
+                    table.add_row(saved_on, user, dec_pswd)
                 except Exception as e:
-                    print(f"Error: {e}")
-            print("\n","-"*33, sep="", end="")
+                    console.print(f"[red]Error:[/red] Failed to decrypt password for {user}.")
+
+            console.clear()
+            console.print(table)
     except FileNotFoundError:
-        print("No file has been created to store the info yet.")
+        console.print("[yellow]No file has been created to store the info yet.[/yellow]")
 
 def add(fernet):
     # Get current date and time
