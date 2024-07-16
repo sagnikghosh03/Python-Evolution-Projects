@@ -25,7 +25,7 @@ def main():
         else:
             break
     console.clear()
-    console.print("\nChoose what you would like to do:\n\n\t[1] Add password. \n\t[2] View existing passwords. \n\t[3] Quit the program. ")
+    console.print("\nChoose what you would like to do:\n\n\t[1] [bold]Add[/bold] password. \n\t[2] [bold]View[/bold] existing passwords. \n\t[3] [bold]Quit[/bold] the program. ")
     while True:
         mode = input("\nWhat would you like to do? (1 / 2 / 3): ")
         if mode == '3':
@@ -66,7 +66,10 @@ def view(fernet):
                 saved_on, user, enc_pswd = data.split(" ")
                 try:
                     dec_pswd = fernet.decrypt(enc_pswd.encode()).decode()
-                    print(f"\nSaved On: {saved_on} || Account Name: {user} || Password: {dec_pswd}")
+                    console.print(f"\n[orange_red1]Saved On:[/orange_red1] ", end="")
+                    print(f"{saved_on} ", end="")
+                    console.print(f"[bold]||[/bold] [green]Account Name:[/green] {user} [bold]||[/bold] [bright_blue]Password:[/bright_blue] ", end="")
+                    print(f"{dec_pswd}")
                 except Exception as e:
                     print(f"Error: {e}")
             print("\n","-"*33, sep="", end="")
@@ -81,7 +84,7 @@ def add(fernet):
     # Get the info
     name = input("Account Name: ",)
     while True:
-        gen_pass = input("\nDo you want to Generate a random password? (y/n): ")
+        gen_pass = input("\nDo you want to Generate a Random Password? (y/n): ")
         choices = ["y", "n"]
 
         if gen_pass not in choices:
@@ -110,15 +113,15 @@ def generate():
             console.print("[red]Error:[/red]", e)
     
     while True:
-        has_num = input("Do you want to include Numbers (y/n)? ").strip().lower()
-        has_special = input("Do you want to include Special Characters (y/n)? ").strip().lower()
-        choices = ["y", "n"]
-
-        if has_num not in choices or has_special not in choices:
-            console.print("[red]Invalid choice![/red] Choose one from (y / n)\n")
-        else:
+        has_num = input("\nDo you want to include Numbers (y/n)? ").strip().lower()
+        if check(has_num):
             break
 
+    while True:
+        has_special = input("\nDo you want to include Special Characters (y/n)? ").strip().lower()
+        if check(has_special):
+            break
+    
     letters = string.ascii_letters
     num = string.digits
     special = string.punctuation
@@ -135,6 +138,15 @@ def generate():
         pwd += random.choice(characters)
 
     return pwd
+
+def check(i):
+    choices = ["y", "n"]
+
+    if i not in choices:
+        console.print("[red]Invalid choice![/red] Choose one from (y / n)")
+        return False
+    else:
+        return True
 
 if __name__ == "__main__":
     main()
