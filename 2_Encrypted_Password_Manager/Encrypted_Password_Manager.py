@@ -25,7 +25,7 @@ def main():
         else:
             break
     console.clear()
-    console.print("\nChoose what you would like to do:\n\n\t[1] [bold]Add[/bold] password. \n\t[2] [bold]View[/bold] existing passwords. \n\t[3] [bold]Quit[/bold] the program. ")
+    console.print("\nChoose what you would like to do:\n\n\t[1] [bold orange_red1]Add[/bold orange_red1] password. \n\t[2] [bold green]View[/bold green] existing passwords. \n\t[3] [bold blue]Quit[/bold blue] the program. ")
     while True:
         mode = input("\nWhat would you like to do? (1 / 2 / 3): ")
         if mode == '3':
