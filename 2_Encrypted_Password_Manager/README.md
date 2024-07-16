@@ -34,9 +34,10 @@ Potential future enhancements could include:
 - Implement user profiles to manage multiple sets of passwords securely, allowing different access levels or permissions for each profile.
 
 ### Submission Details:
-- **GitHub and edX Usernames:** [Your usernames]
-- **City and Country:** [Your city and country]
-- **Date of Recording:** [Date of recording the video demo]
+- **GitHub Username:** sagnikghosh03
+- **edX Username:** sagnik_ghosh_03
+- **City and Country:** Kolkata, India
+- **Date of Recording:** 
 
 This project was developed as part of the CS50P course, leveraging Python programming concepts and cryptographic techniques learned throughout the course.
 
