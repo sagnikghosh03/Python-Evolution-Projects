@@ -3,7 +3,7 @@
 #### Video Demo: [Insert YouTube URL Here]
 
 #### Description:
-This project implements a secure password manager using Python, allowing users to store and manage their passwords safely. It encrypts passwords using Fernet encryption from the `cryptography` library for security. The application provides features to add new passwords, view existing ones, and generate strong passwords.
+This project implements a secure password manager using Python, allowing users to store and manage their passwords safely. It also encrypts passwords using Fernet encryption from the `cryptography` library for security. The application provides features to add new passwords, view existing ones, and generate strong passwords.
 
 ### Project Overview:
 The password manager consists of the following components:
@@ -28,17 +28,17 @@ Unit tests in `test_project.py` utilize `pytest` and mock objects (`unittest.moc
 ### Future Enhancements:
 Potential future enhancements could include:
 - Adding user authentication features beyond the master password (such as Two-Factor Authentication (2FA)).
-- Incorporate automated backup and restore functionalities to prevent data loss and facilitate recovery in case of system failures.
+- Incorporating automated backup and restore functionalities to prevent data loss and facilitate recovery in case of system failures.
 - Implementing secure cloud storage options for passwords.
 - Enhancing password generation with more complex algorithms.
-- Implement user profiles to manage multiple sets of passwords securely, allowing different access levels or permissions for each profile.
+- Implementing user profiles to manage multiple sets of passwords securely, allowing different access levels or permissions for each profile.
 
 ### Submission Details:
 - **GitHub Username:** sagnikghosh03
 - **edX Username:** sagnik_ghosh_03
 - **City and Country:** Kolkata, India
-- **Date of Recording:** 
+- **Date of Recording:**
 
-This project was developed as part of the CS50P course, leveraging Python programming concepts and cryptographic techniques learned throughout the course.
+This project was developed as part of the CS50P course, for the final project, leveraging Python programming concepts and cryptographic techniques learned throughout the course.
 
 Feel free to reach out if you have any questions or suggestions for improvement!
