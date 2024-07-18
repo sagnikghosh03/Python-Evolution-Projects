@@ -37,7 +37,7 @@ Potential future enhancements could include:
 - **GitHub Username:** sagnikghosh03
 - **edX Username:** sagnik_ghosh_03
 - **City and Country:** Kolkata, India
-- **Date of Recording:**
+- **Date of Recording:** 2024-07-18
 
 This project was developed as part of the CS50P course, for the final project, leveraging Python programming concepts and cryptographic techniques learned throughout the course.
 
