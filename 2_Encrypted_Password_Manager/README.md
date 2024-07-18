@@ -1,6 +1,6 @@
 # Ecrypted Password Manager Project
 
-#### Video Demo: [text](https://youtu.be/VjGEL7_PVHg?si=xWLkP-EzNuK8WGQn)
+#### Video Demo: [Watch On YouTube](https://youtu.be/VjGEL7_PVHg?si=xWLkP-EzNuK8WGQn)
 
 #### Description:
 This project implements a secure password manager using Python, allowing users to store and manage their passwords safely. It also encrypts passwords using Fernet encryption from the `cryptography` library for security. The application provides features to add new passwords, view existing ones, and generate strong passwords.
